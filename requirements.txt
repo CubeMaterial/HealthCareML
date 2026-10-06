@@ -1,0 +1,15 @@
+pandas
+numpy
+scikit-learn
+xgboost==1.7.6
+lightgbm
+matplotlib
+skl2onnx
+onnxmltools
+onnx
+onnxruntime
+pyreadstat
+pyyaml
+joblib
+fastapi
+uvicorn[standard]

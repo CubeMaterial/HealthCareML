@@ -1,0 +1,140 @@
+{
+  "purpose": "Reference outputs for comparing Flutter ONNX inference with Python ONNX Runtime.",
+  "tolerance_percent_points": 0.01,
+  "models": {
+    "diabetes": "assets/models/diabetes.onnx",
+    "hypertension": "assets/models/hypertension.onnx",
+    "obesity": "assets/models/obesity.onnx"
+  },
+  "cases": [
+    {
+      "case_id": "default_app_input",
+      "description": "Flutter survey screen default values",
+      "input": {
+        "age": 45,
+        "sexCode": 1,
+        "heightCm": 170.0,
+        "weightKg": 70.0,
+        "sleepDurationCode": 3,
+        "sleepQualityCode": 2,
+        "smokingStatusCode": 0,
+        "smokingAmountCode": null,
+        "drinkingFrequencyCode": 0,
+        "drinkingAmountCode": 0,
+        "bingeDrinkingFrequencyCode": 0,
+        "exerciseFrequencyCode": 2,
+        "exerciseDurationCode": 2,
+        "strengthTrainingFrequencyCode": 1,
+        "walkingDurationCode": 2,
+        "walkingDaysCode": 2,
+        "stressCode": 2,
+        "subjectiveHealthCode": 2,
+        "breakfastFrequencyCode": 2,
+        "vegetableFrequencyCode": 2,
+        "sweetFoodFrequencyCode": 1,
+        "saltyFoodPreferenceCode": 1,
+        "lateNightSnackFrequencyCode": 1
+      },
+      "derived": {
+        "bmi": 24.2215
+      },
+      "expected": {
+        "diabetesPercent": 27.6742,
+        "hypertensionPercent": 25.1108,
+        "obesityPercent": 67.8686,
+        "riskFactors": [
+          "뚜렷한 주요 위험 요인 없음"
+        ]
+      }
+    },
+    {
+      "case_id": "higher_risk_pattern",
+      "description": "Higher BMI, smoking, drinking, low activity, short sleep, high stress",
+      "input": {
+        "age": 62,
+        "sexCode": 1,
+        "heightCm": 168.0,
+        "weightKg": 88.0,
+        "sleepDurationCode": 1,
+        "sleepQualityCode": 4,
+        "smokingStatusCode": 3,
+        "smokingAmountCode": 2,
+        "drinkingFrequencyCode": 4,
+        "drinkingAmountCode": 4,
+        "bingeDrinkingFrequencyCode": 4,
+        "exerciseFrequencyCode": 0,
+        "exerciseDurationCode": 0,
+        "strengthTrainingFrequencyCode": 0,
+        "walkingDurationCode": 0,
+        "walkingDaysCode": 0,
+        "stressCode": 4,
+        "subjectiveHealthCode": 4,
+        "breakfastFrequencyCode": 0,
+        "vegetableFrequencyCode": 0,
+        "sweetFoodFrequencyCode": 3,
+        "saltyFoodPreferenceCode": 2,
+        "lateNightSnackFrequencyCode": 3
+      },
+      "derived": {
+        "bmi": 31.1791
+      },
+      "expected": {
+        "diabetesPercent": 86.5658,
+        "hypertensionPercent": 86.6262,
+        "obesityPercent": 51.8694,
+        "riskFactors": [
+          "BMI 높음",
+          "운동 부족",
+          "수면 부족/질 저하",
+          "흡연",
+          "음주 빈도/음주량 높음",
+          "스트레스 높음",
+          "채소 섭취 부족",
+          "단 음식/음료 섭취 잦음",
+          "짠 음식 선호",
+          "야식 빈도 높음"
+        ]
+      }
+    },
+    {
+      "case_id": "lower_risk_pattern",
+      "description": "Younger, normal BMI, non-smoking, lower drinking, active, enough sleep",
+      "input": {
+        "age": 31,
+        "sexCode": 2,
+        "heightCm": 164.0,
+        "weightKg": 55.0,
+        "sleepDurationCode": 3,
+        "sleepQualityCode": 0,
+        "smokingStatusCode": 0,
+        "smokingAmountCode": null,
+        "drinkingFrequencyCode": 1,
+        "drinkingAmountCode": 0,
+        "bingeDrinkingFrequencyCode": 0,
+        "exerciseFrequencyCode": 3,
+        "exerciseDurationCode": 2,
+        "strengthTrainingFrequencyCode": 2,
+        "walkingDurationCode": 2,
+        "walkingDaysCode": 3,
+        "stressCode": 0,
+        "subjectiveHealthCode": 0,
+        "breakfastFrequencyCode": 3,
+        "vegetableFrequencyCode": 3,
+        "sweetFoodFrequencyCode": 0,
+        "saltyFoodPreferenceCode": 0,
+        "lateNightSnackFrequencyCode": 0
+      },
+      "derived": {
+        "bmi": 20.4491
+      },
+      "expected": {
+        "diabetesPercent": 0.9388,
+        "hypertensionPercent": 1.2726,
+        "obesityPercent": 27.1317,
+        "riskFactors": [
+          "뚜렷한 주요 위험 요인 없음"
+        ]
+      }
+    }
+  ]
+}

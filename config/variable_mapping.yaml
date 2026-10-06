@@ -1,0 +1,223 @@
+# 지역사회건강조사 2020~2025 앱 설문 기반 ML용 변수 매핑
+# TODO: 각 연도 이용지침서/조사표에서 문항명과 코드값을 최종 재확인하세요.
+# TODO: 현재 매핑은 포트폴리오용 프로토타입 데이터셋 생성을 위한 1차 설정입니다.
+
+project:
+  years: [2020, 2021, 2022, 2023, 2024, 2025]
+  obesity_bmi_cutoff: 25
+
+sources:
+  2020:
+    raw: Data/chs20_all_re.sas7bdat
+    extracted: Data/processed/chs20_all_re_risk.csv
+  2021:
+    raw: Data/chs21_all.sas7bdat
+    extracted: Data/processed/chs21_all_risk.csv
+  2022:
+    raw: Data/chs22_all.sas7bdat
+    extracted: Data/processed/chs22_all_risk.csv
+  2023:
+    raw: Data/chs23_all.sas7bdat
+    extracted: Data/processed/chs23_all_risk.csv
+  2024:
+    raw: Data/chs24_all.sas7bdat
+    extracted: Data/processed/chs24_all_risk.csv
+  2025:
+    raw: Data/chs25_all.sas7bdat
+    extracted: Data/processed/chs25_all_risk.csv
+
+common_columns:
+  - year
+  - age
+  - sex
+  - height
+  - weight
+  - bmi
+  - smoking
+  - drinking
+  - physical_activity
+  - walking
+  - sleep_weekday
+  - sleep_weekend
+  - sleep_avg
+  - stress
+  - subjective_health
+  - diabetes_label
+  - hypertension_label
+  - obesity_label
+
+variables:
+  year:
+    2020: examin_code
+    2021: examin_year
+    2022: examin_year
+    2023: examin_year
+    2024: examin_year
+    2025: examin_year
+    type: categorical
+    note: "2020은 examin_code가 bytes/string 형태일 수 있어 앞 4자리에서 연도 추출"
+
+  age:
+    2020: age
+    2021: age
+    2022: age
+    2023: age
+    2024: age
+    2025: age
+    type: numeric
+    valid_range: [19, 110]
+
+  sex:
+    2020: sex
+    2021: sex
+    2022: sex
+    2023: sex
+    2024: sex
+    2025: sex
+    type: categorical
+    invalid_values: [7, 8, 9]
+    todo: "성별 코드값은 조사표 기준으로 최종 확인"
+
+  height:
+    2021: oba_02z1
+    2022: oba_02z1
+    2023: oba_02z1
+    2024: oba_02z1
+    2025: oba_02z1
+    type: numeric
+    valid_range: [50, 210]
+    todo: "2020은 키/몸무게 대신 oba_bmi 사용"
+
+  weight:
+    2021: oba_03z1
+    2022: oba_03z1
+    2023: oba_03z1
+    2024: oba_03z1
+    2025: oba_03z1
+    type: numeric
+    valid_range: [20, 180]
+
+  bmi_source:
+    2020: oba_bmi
+    2023: oba_bmi
+    2024: oba_bmi
+    type: numeric
+    valid_range: [10, 60]
+    note: "직접 계산 BMI가 없을 때 보조로 사용"
+
+  smoking:
+    2020: sma_01z1
+    2021: sma_01z1
+    2022: sma_01z1
+    2023: sma_01z1
+    2024: sma_01z1
+    2025: sma_01z1
+    type: categorical
+    invalid_values: [7, 8, 9, 77, 88, 99]
+    todo: "현재흡연/평생흡연 문항 정의 확인"
+
+  drinking:
+    2020: dra_01z1
+    2021: dra_01z1
+    2022: dra_01z1
+    2023: dra_01z1
+    2024: dra_01z1
+    2025: dra_01z1
+    type: categorical
+    invalid_values: [7, 8, 9, 77, 88, 99]
+    todo: "음주 경험/빈도 문항 정의 확인"
+
+  physical_activity:
+    2020: pha_04z1
+    2021: pha_04z1
+    2022: pha_04z1
+    2023: pha_04z1
+    2024: pha_04z1
+    2025: pha_04z1
+    type: categorical
+    invalid_values: [7, 8, 9, 77, 88, 99]
+    todo: "격렬한 신체활동 일수/실천 여부 문항 정의 확인"
+
+  walking:
+    2020: phb_01z1
+    2021: phb_01z1
+    2022: phb_01z1
+    2023: phb_01z1
+    2024: phb_01z1
+    2025: phb_01z1
+    type: categorical
+    invalid_values: [7, 8, 9, 77, 88, 99]
+    todo: "걷기 일수/실천 여부 문항 정의 확인"
+
+  sleep_weekday:
+    2020: mtc_17z1
+    2021: mtc_17z1
+    2022: mtc_17z1
+    2024: mtc_17z1
+    2025: mtc_17z1
+    type: numeric
+    valid_range: [0, 24]
+    invalid_values: [88, 99]
+    todo: "2023년은 수면시간 변수가 없음"
+
+  sleep_weekend:
+    2020: mtc_18z1
+    2021: mtc_18z1
+    2022: mtc_18z1
+    2024: mtc_18z1
+    2025: mtc_18z1
+    type: numeric
+    valid_range: [0, 24]
+    invalid_values: [88, 99]
+
+  stress:
+    2020: mta_01z1
+    2021: mta_01z1
+    2022: mta_01z1
+    2023: mta_01z1
+    2024: mta_01z1
+    2025: mta_01z1
+    type: categorical
+    invalid_values: [7, 8, 9, 77, 88, 99]
+    todo: "스트레스 인지 정도 문항 코드 확인"
+
+  subjective_health:
+    2020: qoa_01z1
+    2021: qoa_01z1
+    2022: qoa_01z1
+    2023: qoa_01z1
+    2024: qoa_01z1
+    2025: qoa_01z1
+    type: categorical
+    invalid_values: [7, 8, 9, 77, 88, 99]
+    todo: "주관적 건강수준 문항 코드 확인"
+
+labels:
+  diabetes_label:
+    source_variable: dia_04z1
+    description: "당뇨병 의사진단 경험 여부"
+    positive_values: [1]
+    negative_values: [2]
+    missing_values: [7, 8, 9, 77, 88, 99]
+    codebook_status: "2021~2025 이용지침서에서 dia_04z1 당뇨병 진단경험률 확인"
+
+  hypertension_label:
+    source_variable: hya_04z1
+    description: "고혈압 의사진단 경험 여부"
+    positive_values: [1]
+    negative_values: [2]
+    missing_values: [7, 8, 9, 77, 88, 99]
+    codebook_status: "2021~2025 이용지침서에서 hya_04z1 고혈압 진단경험률 확인"
+
+model_datasets:
+  obesity:
+    label: obesity_label
+    features: [age, sex, smoking, drinking, physical_activity, walking, sleep_avg, stress, subjective_health]
+  diabetes:
+    label: diabetes_label
+    features: [age, sex, bmi, smoking, drinking, physical_activity, walking, sleep_avg, stress, subjective_health]
+    forbidden_prefixes: [dia_]
+  hypertension:
+    label: hypertension_label
+    features: [age, sex, bmi, smoking, drinking, physical_activity, walking, sleep_avg, stress, subjective_health]
+    forbidden_prefixes: [hya_]

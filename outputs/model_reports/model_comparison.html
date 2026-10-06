@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>HealthCareNote Model Performance</title>
+  <style>
+    body { margin: 0; padding: 32px; background: #f8fafc; color: #0f172a; }
+    .wrap { max-width: 1180px; margin: 0 auto; }
+    h1 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin-bottom: 6px; }
+    p { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #475569; margin-bottom: 24px; }
+    .panel { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 18px; box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06); }
+    img { width: 100%; margin-top: 24px; border: 1px solid #e2e8f0; border-radius: 8px; }
+    table { width: 100%; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>HealthCareNote Model Performance</h1>
+    <p>RandomForest, XGBoost, LightGBM 분류 모델의 Accuracy, Precision, Recall, F1, ROC-AUC 비교 결과입니다.</p>
+    <section class="panel">
+      <style type="text/css">
+#T_33344 caption {
+  caption-side: top;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 16px;
+}
+#T_33344 th {
+  background: #0f172a;
+  color: white;
+  padding: 10px;
+}
+#T_33344 td {
+  padding: 9px;
+  text-align: center;
+}
+#T_33344 table {
+  border-collapse: collapse;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif;
+}
+#T_33344_row0_col2, #T_33344_row1_col2 {
+  background-color: #1e8bbd;
+  color: #f1f1f1;
+}
+#T_33344_row0_col3, #T_33344_row1_col3 {
+  background-color: #c9eab4;
+  color: #000000;
+}
+#T_33344_row0_col4, #T_33344_row5_col4 {
+  background-color: #24459c;
+  color: #f1f1f1;
+}
+#T_33344_row0_col5, #T_33344_row1_col5, #T_33344_row2_col5 {
+  background-color: #7ecdbb;
+  color: #000000;
+}
+#T_33344_row0_col6, #T_33344_row1_col6 {
+  background-color: #2352a3;
+  color: #f1f1f1;
+}
+#T_33344_row1_col4, #T_33344_row3_col4, #T_33344_row4_col4, #T_33344_row5_col6 {
+  background-color: #24479d;
+  color: #f1f1f1;
+}
+#T_33344_row2_col2, #T_33344_row7_col6, #T_33344_row8_col6 {
+  background-color: #1e88bc;
+  color: #f1f1f1;
+}
+#T_33344_row2_col3 {
+  background-color: #c8e9b4;
+  color: #000000;
+}
+#T_33344_row2_col4 {
+  background-color: #234c9f;
+  color: #f1f1f1;
+}
+#T_33344_row2_col6 {
+  background-color: #2354a3;
+  color: #f1f1f1;
+}
+#T_33344_row3_col2, #T_33344_row4_col2 {
+  background-color: #2168ad;
+  color: #f1f1f1;
+}
+#T_33344_row3_col3 {
+  background-color: #37acc3;
+  color: #f1f1f1;
+}
+#T_33344_row3_col5, #T_33344_row4_col5, #T_33344_row5_col5 {
+  background-color: #1e8abd;
+  color: #f1f1f1;
+}
+#T_33344_row3_col6, #T_33344_row4_col6 {
+  background-color: #24449c;
+  color: #f1f1f1;
+}
+#T_33344_row4_col3 {
+  background-color: #39adc3;
+  color: #f1f1f1;
+}
+#T_33344_row5_col2 {
+  background-color: #216bae;
+  color: #f1f1f1;
+}
+#T_33344_row5_col3 {
+  background-color: #3aaec3;
+  color: #f1f1f1;
+}
+#T_33344_row6_col2, #T_33344_row7_col2, #T_33344_row8_col2 {
+  background-color: #2296c1;
+  color: #f1f1f1;
+}
+#T_33344_row6_col3 {
+  background-color: #6fc7bd;
+  color: #000000;
+}
+#T_33344_row6_col4, #T_33344_row7_col4 {
+  background-color: #2498c1;
+  color: #f1f1f1;
+}
+#T_33344_row6_col5, #T_33344_row7_col5, #T_33344_row8_col5 {
+  background-color: #4ab9c3;
+  color: #f1f1f1;
+}
+#T_33344_row6_col6 {
+  background-color: #1e86bb;
+  color: #f1f1f1;
+}
+#T_33344_row7_col3, #T_33344_row8_col3 {
+  background-color: #71c8bd;
+  color: #000000;
+}
+#T_33344_row8_col4 {
+  background-color: #259ac1;
+  color: #f1f1f1;
+}
+</style>
+<table id="T_33344">
+  <caption>HealthCareNote Model Performance Dashboard</caption>
+  <thead>
+    <tr>
+      <th id="T_33344_level0_col0" class="col_heading level0 col0" >Disease Model</th>
+      <th id="T_33344_level0_col1" class="col_heading level0 col1" >Algorithm</th>
+      <th id="T_33344_level0_col2" class="col_heading level0 col2" >Accuracy</th>
+      <th id="T_33344_level0_col3" class="col_heading level0 col3" >Precision</th>
+      <th id="T_33344_level0_col4" class="col_heading level0 col4" >Recall</th>
+      <th id="T_33344_level0_col5" class="col_heading level0 col5" >F1</th>
+      <th id="T_33344_level0_col6" class="col_heading level0 col6" >ROC-AUC</th>
+      <th id="T_33344_level0_col7" class="col_heading level0 col7" >Train Rows</th>
+      <th id="T_33344_level0_col8" class="col_heading level0 col8" >Test Rows</th>
+      <th id="T_33344_level0_col9" class="col_heading level0 col9" >Positive Rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_33344_row0_col0" class="data row0 col0" >diabetes</td>
+      <td id="T_33344_row0_col1" class="data row0 col1" >XGBoost</td>
+      <td id="T_33344_row0_col2" class="data row0 col2" >0.638400</td>
+      <td id="T_33344_row0_col3" class="data row0 col3" >0.245100</td>
+      <td id="T_33344_row0_col4" class="data row0 col4" >0.821100</td>
+      <td id="T_33344_row0_col5" class="data row0 col5" >0.377600</td>
+      <td id="T_33344_row0_col6" class="data row0 col6" >0.783300</td>
+      <td id="T_33344_row0_col7" class="data row0 col7" >1108220</td>
+      <td id="T_33344_row0_col8" class="data row0 col8" >277056</td>
+      <td id="T_33344_row0_col9" class="data row0 col9" >0.1336</td>
+    </tr>
+    <tr>
+      <td id="T_33344_row1_col0" class="data row1 col0" >diabetes</td>
+      <td id="T_33344_row1_col1" class="data row1 col1" >LightGBM</td>
+      <td id="T_33344_row1_col2" class="data row1 col2" >0.639200</td>
+      <td id="T_33344_row1_col3" class="data row1 col3" >0.245200</td>
+      <td id="T_33344_row1_col4" class="data row1 col4" >0.818800</td>
+      <td id="T_33344_row1_col5" class="data row1 col5" >0.377400</td>
+      <td id="T_33344_row1_col6" class="data row1 col6" >0.783300</td>
+      <td id="T_33344_row1_col7" class="data row1 col7" >1108220</td>
+      <td id="T_33344_row1_col8" class="data row1 col8" >277056</td>
+      <td id="T_33344_row1_col9" class="data row1 col9" >0.1336</td>
+    </tr>
+    <tr>
+      <td id="T_33344_row2_col0" class="data row2 col0" >diabetes</td>
+      <td id="T_33344_row2_col1" class="data row2 col1" >RandomForest</td>
+      <td id="T_33344_row2_col2" class="data row2 col2" >0.645800</td>
+      <td id="T_33344_row2_col3" class="data row2 col3" >0.246500</td>
+      <td id="T_33344_row2_col4" class="data row2 col4" >0.803300</td>
+      <td id="T_33344_row2_col5" class="data row2 col5" >0.377300</td>
+      <td id="T_33344_row2_col6" class="data row2 col6" >0.780300</td>
+      <td id="T_33344_row2_col7" class="data row2 col7" >1108220</td>
+      <td id="T_33344_row2_col8" class="data row2 col8" >277056</td>
+      <td id="T_33344_row2_col9" class="data row2 col9" >0.1336</td>
+    </tr>
+    <tr>
+      <td id="T_33344_row3_col0" class="data row3 col0" >hypertension</td>
+      <td id="T_33344_row3_col1" class="data row3 col1" >LightGBM</td>
+      <td id="T_33344_row3_col2" class="data row3 col2" >0.723800</td>
+      <td id="T_33344_row3_col3" class="data row3 col3" >0.531600</td>
+      <td id="T_33344_row3_col4" class="data row3 col4" >0.818100</td>
+      <td id="T_33344_row3_col5" class="data row3 col5" >0.644500</td>
+      <td id="T_33344_row3_col6" class="data row3 col6" >0.825500</td>
+      <td id="T_33344_row3_col7" class="data row3 col7" >1108212</td>
+      <td id="T_33344_row3_col8" class="data row3 col8" >277053</td>
+      <td id="T_33344_row3_col9" class="data row3 col9" >0.3059</td>
+    </tr>
+    <tr>
+      <td id="T_33344_row4_col0" class="data row4 col0" >hypertension</td>
+      <td id="T_33344_row4_col1" class="data row4 col1" >XGBoost</td>
+      <td id="T_33344_row4_col2" class="data row4 col2" >0.723300</td>
+      <td id="T_33344_row4_col3" class="data row4 col3" >0.531000</td>
+      <td id="T_33344_row4_col4" class="data row4 col4" >0.818200</td>
+      <td id="T_33344_row4_col5" class="data row4 col5" >0.644000</td>
+      <td id="T_33344_row4_col6" class="data row4 col6" >0.825500</td>
+      <td id="T_33344_row4_col7" class="data row4 col7" >1108212</td>
+      <td id="T_33344_row4_col8" class="data row4 col8" >277053</td>
+      <td id="T_33344_row4_col9" class="data row4 col9" >0.3059</td>
+    </tr>
+    <tr>
+      <td id="T_33344_row5_col0" class="data row5 col0" >hypertension</td>
+      <td id="T_33344_row5_col1" class="data row5 col1" >RandomForest</td>
+      <td id="T_33344_row5_col2" class="data row5 col2" >0.718600</td>
+      <td id="T_33344_row5_col3" class="data row5 col3" >0.525700</td>
+      <td id="T_33344_row5_col4" class="data row5 col4" >0.820400</td>
+      <td id="T_33344_row5_col5" class="data row5 col5" >0.640800</td>
+      <td id="T_33344_row5_col6" class="data row5 col6" >0.820000</td>
+      <td id="T_33344_row5_col7" class="data row5 col7" >1108212</td>
+      <td id="T_33344_row5_col8" class="data row5 col8" >277053</td>
+      <td id="T_33344_row5_col9" class="data row5 col9" >0.3059</td>
+    </tr>
+    <tr>
+      <td id="T_33344_row6_col0" class="data row6 col0" >obesity</td>
+      <td id="T_33344_row6_col1" class="data row6 col1" >LightGBM</td>
+      <td id="T_33344_row6_col2" class="data row6 col2" >0.607100</td>
+      <td id="T_33344_row6_col3" class="data row6 col3" >0.406400</td>
+      <td id="T_33344_row6_col4" class="data row6 col4" >0.598600</td>
+      <td id="T_33344_row6_col5" class="data row6 col5" >0.484100</td>
+      <td id="T_33344_row6_col6" class="data row6 col6" >0.648500</td>
+      <td id="T_33344_row6_col7" class="data row6 col7" >1092671</td>
+      <td id="T_33344_row6_col8" class="data row6 col8" >273168</td>
+      <td id="T_33344_row6_col9" class="data row6 col9" >0.3080</td>
+    </tr>
+    <tr>
+      <td id="T_33344_row7_col0" class="data row7 col0" >obesity</td>
+      <td id="T_33344_row7_col1" class="data row7 col1" >XGBoost</td>
+      <td id="T_33344_row7_col2" class="data row7 col2" >0.606800</td>
+      <td id="T_33344_row7_col3" class="data row7 col3" >0.406200</td>
+      <td id="T_33344_row7_col4" class="data row7 col4" >0.599300</td>
+      <td id="T_33344_row7_col5" class="data row7 col5" >0.484200</td>
+      <td id="T_33344_row7_col6" class="data row7 col6" >0.648100</td>
+      <td id="T_33344_row7_col7" class="data row7 col7" >1092671</td>
+      <td id="T_33344_row7_col8" class="data row7 col8" >273168</td>
+      <td id="T_33344_row7_col9" class="data row7 col9" >0.3080</td>
+    </tr>
+    <tr>
+      <td id="T_33344_row8_col0" class="data row8 col0" >obesity</td>
+      <td id="T_33344_row8_col1" class="data row8 col1" >RandomForest</td>
+      <td id="T_33344_row8_col2" class="data row8 col2" >0.606200</td>
+      <td id="T_33344_row8_col3" class="data row8 col3" >0.405300</td>
+      <td id="T_33344_row8_col4" class="data row8 col4" >0.596000</td>
+      <td id="T_33344_row8_col5" class="data row8 col5" >0.482500</td>
+      <td id="T_33344_row8_col6" class="data row8 col6" >0.646600</td>
+      <td id="T_33344_row8_col7" class="data row8 col7" >1092671</td>
+      <td id="T_33344_row8_col8" class="data row8 col8" >273168</td>
+      <td id="T_33344_row8_col9" class="data row8 col9" >0.3080</td>
+    </tr>
+  </tbody>
+</table>
+
+      <img src="model_comparison.png" alt="Metric comparison bar chart">
+    </section>
+  </main>
+</body>
+</html>

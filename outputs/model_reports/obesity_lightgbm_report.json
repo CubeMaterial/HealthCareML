@@ -1,0 +1,23 @@
+{
+  "accuracy": 0.6071,
+  "precision": 0.4064,
+  "recall": 0.5986,
+  "f1": 0.4841,
+  "roc_auc": 0.6485,
+  "confusion_matrix": [
+    [
+      115485,
+      73557
+    ],
+    [
+      33766,
+      50360
+    ]
+  ],
+  "model_name": "obesity",
+  "algorithm": "lightgbm",
+  "algorithm_label": "LightGBM",
+  "train_rows": 1092671,
+  "test_rows": 273168,
+  "positive_rate": 0.308
+}

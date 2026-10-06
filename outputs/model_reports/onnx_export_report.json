@@ -1,0 +1,41 @@
+[
+  {
+    "model_name": "diabetes",
+    "algorithm": "xgboost",
+    "joblib_path": "/Users/g0dzer0/Documents/Workspace/Python/healthCareNote/models/diabetes_xgboost.joblib",
+    "onnx_path": "/Users/g0dzer0/Documents/Workspace/Python/healthCareNote/models/onnx/diabetes.onnx",
+    "schema_path": "/Users/g0dzer0/Documents/Workspace/Python/healthCareNote/models/onnx/diabetes_schema.json",
+    "size_bytes": 248531,
+    "validation": {
+      "rows": 100,
+      "max_abs_diff": 1.8e-07,
+      "mean_abs_diff": 5e-08
+    }
+  },
+  {
+    "model_name": "hypertension",
+    "algorithm": "lightgbm",
+    "joblib_path": "/Users/g0dzer0/Documents/Workspace/Python/healthCareNote/models/hypertension_lightgbm.joblib",
+    "onnx_path": "/Users/g0dzer0/Documents/Workspace/Python/healthCareNote/models/onnx/hypertension.onnx",
+    "schema_path": "/Users/g0dzer0/Documents/Workspace/Python/healthCareNote/models/onnx/hypertension_schema.json",
+    "size_bytes": 572163,
+    "validation": {
+      "rows": 100,
+      "max_abs_diff": 1.4e-07,
+      "mean_abs_diff": 3e-08
+    }
+  },
+  {
+    "model_name": "obesity",
+    "algorithm": "lightgbm",
+    "joblib_path": "/Users/g0dzer0/Documents/Workspace/Python/healthCareNote/models/obesity_lightgbm.joblib",
+    "onnx_path": "/Users/g0dzer0/Documents/Workspace/Python/healthCareNote/models/onnx/obesity.onnx",
+    "schema_path": "/Users/g0dzer0/Documents/Workspace/Python/healthCareNote/models/onnx/obesity_schema.json",
+    "size_bytes": 572131,
+    "validation": {
+      "rows": 100,
+      "max_abs_diff": 1.2e-07,
+      "mean_abs_diff": 3e-08
+    }
+  }
+]
